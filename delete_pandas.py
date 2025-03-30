@@ -2,6 +2,11 @@ import pandas as pd
 
 pessoas = pd.read_csv("Pessoas.csv", sep=";",header=0)
 
-pessoas_por_pais = pessoas.groupby("Pais").size()
+pessoas.loc[len(pessoas)] = ['Fulano', 'fulano@fulano.org', 'Brazil', 37]
 
-print(pessoas_por_pais)
+pessoas = pessoas.loc[pessoas["Email"] != 'fulano@fulano.org']
+
+# Alternativa
+# pessoas = pessoas.drop(pessoas[pessoas.Email == 'fulano@fulano.org'].index)
+
+print(pessoas)
